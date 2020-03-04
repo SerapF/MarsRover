@@ -12,7 +12,8 @@ namespace MarsRover.Entities
         private CompassDirection compassDirection;
         private String command;
 
-        public Rover(int axis,int ordinate, string compassDirection,string command) {
+        public Rover(int axis, int ordinate, string compassDirection, string command)
+        {
             this.Coordinate = new Coordinate { Axis = axis, Ordinate = ordinate };
             this.CompassDirection = (CompassDirection)Enum.Parse(typeof(CompassDirection), compassDirection);
             this.Command = command;
@@ -37,16 +38,18 @@ namespace MarsRover.Entities
             MovingResult returnValue = MovingResult.Success;
             switch (rover.CompassDirection)
             {
-                case CompassDirection.N: {
+                case CompassDirection.N:
+                    {
                         returnValue = CheckPointAvailability(rover.Coordinate.Axis, rover.Coordinate.Ordinate + 1, plateau, busyCoordinates);
                         if (returnValue == MovingResult.Success)
                         {
                             busyCoordinates.RemoveAll(x => x.Axis == rover.Coordinate.Axis && x.Ordinate == rover.Coordinate.Ordinate);
                             rover.Coordinate.Ordinate = rover.Coordinate.Ordinate + 1;
                         }
-                        break; 
+                        break;
                     }
-                case CompassDirection.E: {
+                case CompassDirection.E:
+                    {
                         returnValue = CheckPointAvailability(rover.Coordinate.Axis + 1, rover.Coordinate.Ordinate, plateau, busyCoordinates);
                         if (returnValue == MovingResult.Success)
                         {
@@ -57,7 +60,7 @@ namespace MarsRover.Entities
                     }
                 case CompassDirection.S:
                     {
-                        returnValue = CheckPointAvailability(rover.Coordinate.Axis, rover.Coordinate.Ordinate - 1, plateau,busyCoordinates);
+                        returnValue = CheckPointAvailability(rover.Coordinate.Axis, rover.Coordinate.Ordinate - 1, plateau, busyCoordinates);
                         if (returnValue == MovingResult.Success)
                         {
                             busyCoordinates.RemoveAll(x => x.Axis == rover.Coordinate.Axis && x.Ordinate == rover.Coordinate.Ordinate);
@@ -67,7 +70,7 @@ namespace MarsRover.Entities
                     }
                 case CompassDirection.W:
                     {
-                        returnValue = CheckPointAvailability(rover.Coordinate.Axis - 1, rover.Coordinate.Ordinate, plateau,busyCoordinates);
+                        returnValue = CheckPointAvailability(rover.Coordinate.Axis - 1, rover.Coordinate.Ordinate, plateau, busyCoordinates);
                         if (returnValue == MovingResult.Success)
                         {
                             busyCoordinates.RemoveAll(x => x.Axis == rover.Coordinate.Axis && x.Ordinate == rover.Coordinate.Ordinate);

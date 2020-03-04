@@ -54,7 +54,8 @@ namespace MarsRover
 
         private static void GetRoverData(string filePath, List<Rover> rovers, Plateau plateau, List<Coordinate> busyCoordinates)
         {
-            try {
+            try
+            {
                 string[] lines = System.IO.File.ReadAllLines(filePath);
                 int axis, maxAxis, minAxis = 0;
                 int ordinate, maxOrdinate, minOrdinate = 0;
@@ -77,7 +78,7 @@ namespace MarsRover
                             command = lines[i];
                             Rover rover = new Rover(axis, ordinate, direction, command);
                             MovingResult pointAvailabilityResult = rover.CheckPointAvailability(axis, ordinate, plateau, busyCoordinates);
-                            if (pointAvailabilityResult  == MovingResult.Success)
+                            if (pointAvailabilityResult == MovingResult.Success)
                             {
                                 busyCoordinates.Add(new Coordinate { Axis = axis, Ordinate = ordinate });
                                 rovers.Add(new Rover(axis, ordinate, direction, command));
@@ -93,14 +94,15 @@ namespace MarsRover
                 else
                     Console.WriteLine("Wrong Input");
             }
-            catch(Exception e) {
+            catch (Exception e)
+            {
 
                 Console.WriteLine("Something went wrong while getting data. Please check your file and its content format.");
 
             }
         }
 
-      
+
 
     }
 
